@@ -27,31 +27,25 @@ from build_clear_sky_cache import haurwitz_clear_sky, solar_cos_zenith_bjt
 from train_3dcnn_ratio_swr import Ratio3DCNN, RatioFrameReader, load_sample_arrays, make_features, sample_cache_available
 from visualize_regional_split_frames import _bounds, ensure_dir, write_json
 import stage3_base_pvnorm_field_model as f04
+import stage3_paths as p3
 
 try:
     from h8_dataset_paths import CENTER_FRAME_CACHE_DIR, CENTER_INDEX_4H3F_ALL, CENTER_PROCESSED_ROOT
 except ModuleNotFoundError:
-    CENTER_PROCESSED_ROOT = Path(
-        "/data/DayinChen/NWP/H8_processed/"
-        "region_26_34_116_126p5_multivar_daytime_06_18_center_bjt"
-    )
-    CENTER_INDEX_4H3F_ALL = (
-        CENTER_PROCESSED_ROOT
-        / "sample_index_strict_daylight_split"
-        / "h8_sample_index_4hist_3future_daylight_all.csv"
-    )
-    CENTER_FRAME_CACHE_DIR = CENTER_PROCESSED_ROOT / "frame_cache_npy"
+    CENTER_PROCESSED_ROOT = p3.STAGE1_CENTER_MONTHLY_DIR
+    CENTER_INDEX_4H3F_ALL = p3.STAGE1_CENTER_INDEX_ALL
+    CENTER_FRAME_CACHE_DIR = p3.STAGE1_CENTER_FRAME_CACHE_DIR
 
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "selection_dir": "/code/Final_3_stage_pipeline/stage_3/data/02_target_selection_lhs50",
-    "target_run_dir": "/code/Final_3_stage_pipeline/stage_3/data/03_target_excluded_run",
-    "frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/04_target_excluded_pvnorm_frame_cache",
-    "multisource_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/01_multisource_nwp_cache",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/runs/04l_swr_anchor_motion_fusion_pvnorm_field_model_seed2026",
-    "swr_anchor_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/05_center_h8_swr_anchor_cache",
+    "selection_dir": str(p3.TARGET_SELECTION_DIR),
+    "target_run_dir": str(p3.TARGET_EXCLUDED_RUN_DIR),
+    "frame_cache_dir": str(p3.TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),
+    "multisource_cache_dir": str(p3.MULTISOURCE_CACHE_DIR),
+    "out_dir": str(p3.MOTION_FUSION_RUN_DIR),
+    "swr_anchor_cache_dir": str(p3.CENTER_H8_SWR_ANCHOR_CACHE_ROOT),
     "normalize_swr_anchor": 1,
     "h8_index_csv": str(CENTER_INDEX_4H3F_ALL),
     "h8_frame_cache_dir": str(CENTER_FRAME_CACHE_DIR),
@@ -61,7 +55,7 @@ PYCHARM_DEFAULTS = {
     "h8_clear_sky_dir": "",
     "h8_center_only": 0,
     "h8_missing_history_max_gap_hours": 2.0,
-    "swr_checkpoint": "/code/Final_3_stage_pipeline/stage_2/runs/h8_swr_residual_convlstm_on_bigpatch_conv3d_decoder_4h3f/v2_no_center_weight/best.pt",
+    "swr_checkpoint": str(p3.SWR_BASE_CHECKPOINT),
     "model_name": "swr_anchor_motion_fusion_pv_nwp",
     "base_model_name": "pv_nwp",
     "grid_size": 64,

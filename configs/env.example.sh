@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Repository root. `pwd` is correct when this file is sourced from the repo root.
-export SATPV_PROJECT_ROOT="$(pwd)"
+# Repository root, resolved from this file even when sourced elsewhere.
+export SATPV_PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # External artifacts root. Keep data, caches, checkpoints, and result CSVs here.
 export SATPV_DATA_ROOT="/path/to/satpv_artifacts"

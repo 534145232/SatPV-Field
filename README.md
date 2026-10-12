@@ -9,7 +9,7 @@ The repository implements the four-stage pipeline used in the manuscript:
 3. construct target-excluded PV generation fields and forecast eight 15-min field horizons;
 4. extract target-local field patches and forecast held-out station output.
 
-The data, cached tensors, trained weights, and experimental outputs are **not included**. They may contain large or restricted operational data. This repository contains source code, launchers, evaluation code, and figure-generation code only.
+The data, cached tensors, trained weights, and experimental outputs are **not included**. They may contain large or restricted operational data. This repository contains source code, launchers, evaluation code, and figure-generation code only. A clean checkout can be statically validated, but end-to-end numerical reproduction requires the private/authorized inputs described in [Data layout](docs/DATA_LAYOUT.md).
 
 ## Reproducibility status
 
@@ -120,6 +120,7 @@ Static validation does not train a model and does not require the dataset:
 python -m compileall -q stage_1 stage_2 stage_3 stage_4 \
   experiments paper_support Framework_draw scripts
 python scripts/check_environment.py --code-only
+python scripts/audit_public_release.py
 ```
 
 After the environment variables and data are available, run:
@@ -278,6 +279,15 @@ git status --short
 git ls-files | grep -E '\.(pt|pth|ckpt|npy|npz|nc|csv|xlsx|h5|hdf5)$' && \
   echo "Unexpected data artifact found" && exit 1 || true
 ```
+
+`python scripts/audit_public_release.py` performs the same release-hygiene checks used by GitHub Actions and also validates local Markdown links and Python syntax.
+
+## Release scope and current limitations
+
+- The repository is a code release, not a self-contained data release. Full training and the reported numerical results cannot be reproduced without authorized PV, H8, and NWP inputs.
+- Trained checkpoints and cached tensors are not distributed. Running from raw data therefore executes all four stages and can require substantial storage and GPU time.
+- The documented paper entry points are authoritative. Historical filenames and compatibility fields remain in some internal modules because existing checkpoints and result schemas depend on them.
+- Static checks validate source integrity and configuration hygiene; they do not establish numerical equivalence on hardware or data that are unavailable in the public repository.
 
 ## Troubleshooting
 

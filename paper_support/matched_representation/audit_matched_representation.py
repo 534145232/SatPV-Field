@@ -56,7 +56,7 @@ def parse_args() -> argparse.Namespace:
         "--project-root",
         type=Path,
         default=SCRIPT_DIR.parents[1],
-        help="Final_3_stage_pipeline root.",
+        help="SatPV-Field repository root.",
     )
     parser.add_argument("--old-data-root", type=Path, default=None)
     parser.add_argument("--stage3-data-dir", type=Path, default=None)

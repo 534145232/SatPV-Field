@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -16,6 +17,7 @@ import numpy as np
 import pandas as pd
 
 from stage4_paths import (
+    ARTIFACT_ROOT,
     PER_STATION_03_VS_05_EVAL_DIR,
     PER_STATION_STAGE3_FIELD_PATCH_RUN_DIR,
     PER_STATION_TEMPORAL_BASELINE_RUN_DIR,
@@ -27,7 +29,12 @@ from stage4_metrics import regression_metric_extras
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-OLD_EXPERIMENT_ROOT = Path("/code/Final_Project_RegionalSplit/experiments/regional_split_v1/station_field_gain_lhs50")
+OLD_EXPERIMENT_ROOT = Path(
+    os.environ.get(
+        "SATPV_LEGACY_EXPERIMENT_ROOT",
+        ARTIFACT_ROOT / "legacy" / "station_field_gain_lhs50",
+    )
+).expanduser().resolve()
 
 
 def parse_args() -> argparse.Namespace:

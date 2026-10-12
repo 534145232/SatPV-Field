@@ -1,4 +1,4 @@
-# BigPV three-stage pipeline runtime dependencies.
+# SatPV-Field four-stage pipeline runtime dependencies.
 #
 # Base image expected by this project:
 #   pytorch:2.11.0-cuda13.0-cudnn9-devel

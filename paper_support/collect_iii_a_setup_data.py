@@ -8,10 +8,10 @@ replaced with assumptions.
 
 Typical server usage:
 
-    python /workspace/Final_3_stage_pipeline/paper_support/collect_iii_a_setup_data.py
+    python paper_support/collect_iii_a_setup_data.py
 
-The default report is written beside this script as
-``iii_a_experimental_setup_data.md``.
+The default report is written under
+``paper_support/outputs/iii_a_experimental_setup_data.md``.
 """
 
 from __future__ import annotations
@@ -73,18 +73,18 @@ def parse_args() -> argparse.Namespace:
         "--project-root",
         type=Path,
         default=DEFAULT_PROJECT_ROOT,
-        help="Final_3_stage_pipeline root. Default: inferred from this script.",
+        help="SatPV-Field repository root. Default: inferred from this script.",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=SCRIPT_DIR / "iii_a_experimental_setup_data.md",
+        default=SCRIPT_DIR / "outputs" / "iii_a_experimental_setup_data.md",
         help="Markdown report path.",
     )
     parser.add_argument(
         "--density-data-root",
         type=Path,
-        default=Path("/data/Final_3_stage_pipeline/stage_3/data/11_source_fleet_density"),
+        default=None,
         help="Optional external root used by the source-fleet-density experiment.",
     )
     parser.add_argument(
@@ -893,6 +893,11 @@ def main() -> None:
         old_data_root=old_data_root,
         require_exists=False,
     )
+    density_data_root = (
+        args.density_data_root.resolve()
+        if args.density_data_root is not None
+        else old_data_root / "stage3" / "data" / "11_source_fleet_density"
+    )
 
     sections: list[str] = [
         "# III-A Experimental Setup and Evaluation Protocol: evidence report",
@@ -908,7 +913,7 @@ def main() -> None:
 
     collectors = [
         lambda: collect_time_protocol(root),
-        lambda: collect_geography_and_split(root, args.density_data_root),
+        lambda: collect_geography_and_split(root, density_data_root),
         lambda: collect_inputs(root, args.train_pv_dir, args.val_pv_dir, stage1_data_dir),
         lambda: collect_field_metrics(root),
         lambda: collect_baselines(root),

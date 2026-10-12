@@ -27,6 +27,7 @@ from stage3_paths import (
     STAGE1_CENTER_INDEX_ALL,
     STAGE1_CENTER_MONTHLY_DIR,
     SWR_BASE_CHECKPOINT,
+    RUNS_DIR,
     TARGET_EXCLUDED_PV_FRAME_CACHE_DIR,
     TARGET_EXCLUDED_RUN_DIR,
     TARGET_SELECTION_DIR,
@@ -41,7 +42,7 @@ USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 PYCHARM_DEFAULTS = {
     "anchor_weight_init": "physical",
     "anchor_weight_random_std": 0.10,
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/runs/ablation_anchor_weights/learnable_physical_init",
+    "run_dir": str(RUNS_DIR / "ablation_anchor_weights" / "learnable_physical_init"),
     "selection_dir": str(TARGET_SELECTION_DIR),
     "target_run_dir": str(TARGET_EXCLUDED_RUN_DIR),
     "frame_cache_dir": str(TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),

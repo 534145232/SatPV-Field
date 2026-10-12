@@ -23,18 +23,18 @@ This repository was assembled as a code-only public release from the working res
 
 ## Portability changes in the public copy
 
-- the repository no longer needs to be named `Final_3_stage_pipeline`;
+- the repository does not require a particular checkout directory name;
 - shell launchers resolve their own directory and default to `python`/`$PYTHON`;
 - data, cache, and checkpoint locations are controlled by environment variables;
 - Stage 1--4 path modules accept a shared external `SATPV_DATA_ROOT`;
-- the original server-specific source and data paths remain untouched in the private working project.
+- the private working project remains untouched; portability changes are confined to this public copy.
 
 ## Verification performed
 
 - all copied Python files passed `compileall`;
 - no data/checkpoint extension listed in `.gitignore` was present in the release tree;
 - no original local Windows path, user-storage path, Bitahub host id, or obvious credential literal was found by the release scan;
-- the repository was initialized locally with branch `main`, but no commit or remote was created.
+- the automated public-release audit checks syntax, path hygiene, accidental artifacts, secrets, and Markdown links on every push and pull request.
 
 ## License
 

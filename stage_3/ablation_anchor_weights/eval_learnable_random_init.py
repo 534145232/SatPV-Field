@@ -4,6 +4,7 @@
 import sys
 
 from eval_learnable_anchor_weights import main
+from stage3_paths import RUNS_DIR
 
 
 if __name__ == "__main__":
@@ -11,7 +12,7 @@ if __name__ == "__main__":
         "--anchor_weight_init",
         "random",
         "--run_dir",
-        "/code/Final_3_stage_pipeline/stage_3/runs/ablation_anchor_weights/learnable_random_init",
+        str(RUNS_DIR / "ablation_anchor_weights" / "learnable_random_init"),
         "--model_name",
         "swr_anchor_motion_fusion_pv_nwp_learnable_random_init",
     ]

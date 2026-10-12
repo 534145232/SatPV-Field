@@ -11,10 +11,14 @@ outputs/
 *.npz
 *.nc
 *.csv
+*.tsv
 *.parquet
 *.h5
 *.hdf5
 *.xlsx
+*.xls
+*.pkl
+*.joblib
 *.tif
 *.tiff
 .env

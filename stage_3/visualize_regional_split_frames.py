@@ -10,12 +10,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import stage3_paths as p3
+
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults",
-    "train_pv_dir": "/data/DayinChen/NWP/PV/train_directory_cleaned_csv",
-    "val_pv_dir": "/data/DayinChen/NWP/PV/val_directory_cleaned_csv",
+    "run_dir": str(p3.DATA_DIR / "_local_core_defaults"),
+    "train_pv_dir": str(p3.TRAIN_PV_DIR),
+    "val_pv_dir": str(p3.VAL_PV_DIR),
     "out_dir": "",
     "start_time": "",
     "candidate_time_start": "2023-06-14 08:30:00",
@@ -44,18 +46,18 @@ TIME_CANDIDATES = [
     "timestamp",
     "time",
     "ds",
-    "閲囬泦鏃堕棿",
-    "鏃堕棿",
-    "鏃ユ湡",
+    "采集时间",
+    "时间",
+    "日期",
 ]
 PV_CANDIDATES = [
     "elec",
     "pv",
     "power",
     "active_power",
-    "鍙戠數鍔熺巼",
-    "鍔熺巼",
-    "鍑哄姏",
+    "发电功率",
+    "功率",
+    "出力",
 ]
 CAPACITY_CANDIDATES = [
     "Capacity",

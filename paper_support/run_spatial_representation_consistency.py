@@ -8,7 +8,7 @@ same source measurements used to construct each field.
 
 Default server usage
 --------------------
-python /workspace/Final_3_stage_pipeline/paper_support/run_spatial_representation_consistency.py
+python paper_support/run_spatial_representation_consistency.py
 
 All outputs are written below
 ``paper_support/spatial_representation_consistency`` by default.
@@ -221,7 +221,7 @@ def load_pipeline_helpers(stage3_dir: Path):
     except Exception as exc:
         raise RuntimeError(
             "Could not import the Stage-3 field-construction helpers. Run this script "
-            "inside the complete Final_3_stage_pipeline environment."
+            "inside the complete SatPV-Field environment."
         ) from exc
     return SimpleNamespace(
         CAPACITY_CANDIDATES=CAPACITY_CANDIDATES,

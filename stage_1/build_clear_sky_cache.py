@@ -11,13 +11,11 @@ import pandas as pd
 import xarray as xr
 
 from h8_3d_common import DEFAULT_INDEX_CSV, DEFAULT_SAMPLE_CACHE_DIR, load_index, write_json
+from h8_dataset_paths import CENTER_CLEAR_SKY_CACHE_4H3F_DIR, CENTER_PROCESSED_ROOT
 
 
-PROCESSED_ROOT = Path(
-    "/data/DayinChen/NWP/H8_processed/"
-    "region_26_34_116_126p5_multivar_daytime_06_18_center_bjt"
-)
-DEFAULT_CLEAR_SKY_DIR = PROCESSED_ROOT / "clear_sky_sample_cache_4hist_3future"
+PROCESSED_ROOT = CENTER_PROCESSED_ROOT
+DEFAULT_CLEAR_SKY_DIR = CENTER_CLEAR_SKY_CACHE_4H3F_DIR
 
 
 def parse_args() -> argparse.Namespace:

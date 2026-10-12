@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import math
+import os
 import random
 from pathlib import Path
 
@@ -29,12 +30,19 @@ from h8_3d_common import (
 )
 
 
+PROJECT_ROOT = Path(os.environ.get("SATPV_PROJECT_ROOT", Path(__file__).resolve().parents[1])).expanduser().resolve()
+ARTIFACT_ROOT = Path(
+    os.environ.get("SATPV_DATA_ROOT", os.environ.get("OLD_DATA_ROOT", PROJECT_ROOT / "data"))
+).expanduser().resolve()
+DEFAULT_OUT_DIR = ARTIFACT_ROOT / "stage2" / "runs" / "h8_swr_3dcnn_center_4h3f"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Train a lightweight 3D CNN baseline for H8 SWR 4-history to 3-future forecasting."
     )
     parser.add_argument("--index_csv", type=Path, default=DEFAULT_INDEX_CSV)
-    parser.add_argument("--out_dir", type=Path, default=Path("/code/Final_3_stage_pipeline/stage_2/runs/h8_swr_3dcnn_center_4h3f"))
+    parser.add_argument("--out_dir", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--frame_cache_dir", type=Path, default=DEFAULT_FRAME_CACHE_DIR)
     parser.add_argument("--sample_cache_dir", type=Path, default=DEFAULT_SAMPLE_CACHE_DIR)
     parser.add_argument("--channels", type=str, default=",".join(parse_channels(None)))

@@ -321,7 +321,7 @@ def load_rows(
         raise FileNotFoundError(
             f"Index CSV not found: {index_csv}\n"
             "Build Stage 1 indices/caches first, for example:\n"
-            "  bash /code/Final_3_stage_pipeline/stage_1/run_stage1_build_indices_and_cache.sh"
+            "  bash stage_1/run_stage1_build_indices_and_cache.sh"
     )
     df = pd.read_csv(index_csv)
     if issue_times_csv is not None:

@@ -26,14 +26,15 @@ from train_fullfield_multisource_residual_unet import (
     _normalize_nwp,
 )
 from visualize_regional_split_frames import _bounds, ensure_dir, write_json
+import stage3_paths as p3
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/03_target_excluded_run",
-    "frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/04_target_excluded_pvnorm_frame_cache",
-    "multisource_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/01_multisource_nwp_cache",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/data/06_multisource_sample_visualization",
+    "run_dir": str(p3.TARGET_EXCLUDED_RUN_DIR),
+    "frame_cache_dir": str(p3.TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),
+    "multisource_cache_dir": str(p3.MULTISOURCE_CACHE_DIR),
+    "out_dir": str(p3.MULTISOURCE_VIS_DIR),
     "sample_split": "test",
     "sample_count": 5,
     "seed": 2026,

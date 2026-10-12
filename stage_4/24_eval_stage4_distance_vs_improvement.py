@@ -223,7 +223,7 @@ def load_station_improvement(args: argparse.Namespace) -> pd.DataFrame:
         raise FileNotFoundError(
             f"Missing station improvement table: {path}\n"
             "Run 22_collect_stage4_all_results.py first, e.g.:\n"
-            "bash /code/Final_3_stage_pipeline/stage_4/run_stage4_collect_all_results.sh"
+            "bash stage_4/run_stage4_collect_all_results.sh"
         )
     df = pd.read_csv(path)
     require_columns(df, ["method_key", "station_sn", "Method", "MAE", "reference_MAE", "MAE_gain", "MAE_gain_pct"], path)

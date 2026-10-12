@@ -10,15 +10,16 @@ if str(PARENT_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(PARENT_SCRIPT_DIR))
 
 import build_fullfield_multisource_cache as base
+import stage3_paths as p3
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 NEW_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/00_source_regional_split",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/data/01_multisource_nwp_cache",
-    "pv_frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/04_target_excluded_pvnorm_frame_cache",
-    "train_pv_dir": "/data/DayinChen/NWP/PV/train_directory_cleaned_csv_same_day06_nwp",
-    "val_pv_dir": "/data/DayinChen/NWP/PV/val_directory_cleaned_csv_same_day06_nwp",
+    "run_dir": str(p3.SOURCE_REGIONAL_RUN_DIR),
+    "out_dir": str(p3.MULTISOURCE_CACHE_DIR),
+    "pv_frame_cache_dir": str(p3.TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),
+    "train_pv_dir": str(p3.TRAIN_PV_DIR),
+    "val_pv_dir": str(p3.VAL_PV_DIR),
     "freq_minutes": 15,
     "issue_stride_minutes": 60,
     "past_frames": 12,

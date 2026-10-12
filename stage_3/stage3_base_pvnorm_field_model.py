@@ -23,15 +23,16 @@ from train_fullfield_dense_temporal_residual_unet import _grid_lonlat, _time_sol
 from train_fullfield_dense_temporal_residual_unet_v2 import ReadOnlyDiskFrameCache, _masked_for_plot
 from train_fullfield_multisource_residual_unet import MODEL_SPECS, NWP_NAMES, _load_multisource_cache, _normalize_h8, _normalize_nwp
 from visualize_regional_split_frames import _bounds, ensure_dir, write_json
+import stage3_paths as p3
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "selection_dir": "/code/Final_3_stage_pipeline/stage_3/data/02_target_selection_lhs50",
-    "target_run_dir": "/code/Final_3_stage_pipeline/stage_3/data/03_target_excluded_run",
-    "frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/04_target_excluded_pvnorm_frame_cache",
-    "multisource_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/01_multisource_nwp_cache",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/runs/base_pvnorm_field_model",
+    "selection_dir": str(p3.TARGET_SELECTION_DIR),
+    "target_run_dir": str(p3.TARGET_EXCLUDED_RUN_DIR),
+    "frame_cache_dir": str(p3.TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),
+    "multisource_cache_dir": str(p3.MULTISOURCE_CACHE_DIR),
+    "out_dir": str(p3.RUNS_DIR / "base_pvnorm_field_model"),
     "grid_size": 64,
     "gaussian_sigma_cells": 1.0,
     "gaussian_radius_cells": 2,

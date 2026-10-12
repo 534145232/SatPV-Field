@@ -159,7 +159,7 @@ def main() -> None:
 
     print("\n==== Repair command: retrain baseline only for missing targets ====")
     print(
-        f"/code/bin/python /code/Final_3_stage_pipeline/stage_4/03_train_per_station_temporal_baseline.py \\\n"
+        f"{sys.executable} {STAGE4_DIR / '03_train_per_station_temporal_baseline.py'} \\\n"
         f"  --selection_dir {args.out_selection_dir} \\\n"
         f"  --time_index_csv {args.out_selection_dir / 'issue_time_index.csv'} \\\n"
         f"  --out_dir {args.missing_baseline_out_dir} \\\n"
@@ -168,7 +168,7 @@ def main() -> None:
     )
     print("\nAfter the repair run finishes, merge it with:")
     print(
-        f"/code/bin/python /code/Final_3_stage_pipeline/stage_4/source_fleet_density/05_merge_missing_baseline_targets.py \\\n"
+        f"{sys.executable} {SCRIPT_DIR / '05_merge_missing_baseline_targets.py'} \\\n"
         f"  --baseline_run_dir {args.baseline_run_dir} \\\n"
         f"  --missing_baseline_run_dir {args.missing_baseline_out_dir}"
     )

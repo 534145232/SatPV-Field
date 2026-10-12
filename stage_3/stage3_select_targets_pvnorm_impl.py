@@ -23,16 +23,17 @@ from train_fullfield_dense_temporal_residual_unet import _timestamp_key, _unique
 from train_fullfield_multisource_residual_unet import _health_filter_station_series
 from train_regional_dense_reconstruction import splat_values
 from visualize_regional_split_frames import _bounds, ensure_dir, load_station_series, write_json
+import stage3_paths as p3
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/00_source_regional_split",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/data/02_target_selection_lhs50",
-    "target_run_dir": "/code/Final_3_stage_pipeline/stage_3/data/03_target_excluded_run",
-    "frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/04_target_excluded_pvnorm_frame_cache",
-    "train_pv_dir": "/data/DayinChen/NWP/PV/train_directory_cleaned_csv_same_day06_nwp",
-    "val_pv_dir": "/data/DayinChen/NWP/PV/val_directory_cleaned_csv_same_day06_nwp",
+    "run_dir": str(p3.SOURCE_REGIONAL_RUN_DIR),
+    "out_dir": str(p3.TARGET_SELECTION_DIR),
+    "target_run_dir": str(p3.TARGET_EXCLUDED_RUN_DIR),
+    "frame_cache_dir": str(p3.TARGET_EXCLUDED_PV_FRAME_CACHE_DIR),
+    "train_pv_dir": str(p3.TRAIN_PV_DIR),
+    "val_pv_dir": str(p3.VAL_PV_DIR),
     "time_start": "2022-01-01 07:00:00",
     "time_end": "2023-06-24 16:45:00",
     "train_end": "2023-01-13 23:59:59",

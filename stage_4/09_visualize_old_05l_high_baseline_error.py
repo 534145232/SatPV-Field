@@ -18,11 +18,16 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from stage4_paths import PER_STATION_03_VS_05_EVAL_DIR, ensure_stage4_dirs
+from stage4_paths import ARTIFACT_ROOT, PER_STATION_03_VS_05_EVAL_DIR, PROJECT_ROOT, ensure_stage4_dirs
 from stage4_metrics import attach_capacity_from_station_meta, regression_metric_extras
 
 
-OLD_EXPERIMENT_ROOT = Path("/code/Final_Project_RegionalSplit/experiments/regional_split_v1/station_field_gain_lhs50")
+OLD_EXPERIMENT_ROOT = Path(
+    os.environ.get(
+        "SATPV_LEGACY_EXPERIMENT_ROOT",
+        ARTIFACT_ROOT / "legacy" / "station_field_gain_lhs50",
+    )
+).expanduser().resolve()
 
 
 def parse_args() -> argparse.Namespace:
@@ -70,8 +75,8 @@ def file_audit(path: Path) -> dict:
         "exists": bool(path.exists()),
         "size_bytes": None,
         "mtime": None,
-        "is_old_project_path": "Final_Project_RegionalSplit" in str(path),
-        "is_stage_pipeline_path": "Final_3_stage_pipeline" in str(path),
+        "is_legacy_experiment_path": OLD_EXPERIMENT_ROOT == path or OLD_EXPERIMENT_ROOT in path.parents,
+        "is_current_project_path": PROJECT_ROOT == path or PROJECT_ROOT in path.parents,
     }
     if path.exists():
         stat = path.stat()

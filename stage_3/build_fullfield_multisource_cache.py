@@ -11,6 +11,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import stage3_paths as p3
+
 from train_fullfield_dense_temporal_forecast import build_issue_time_table, _load_split_df, _parse_time_list
 from train_fullfield_dense_temporal_residual_unet_v2 import ReadOnlyDiskFrameCache, _masked_for_plot, _timestamp_key
 from visualize_regional_split_frames import _bounds, ensure_dir, write_json
@@ -18,14 +20,14 @@ from visualize_regional_split_frames import _bounds, ensure_dir, write_json
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults/fullfield_multisource_cache_issue_h8_seed2026",
-    "pv_frame_cache_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults/fullfield_frame_cache_64_seed2026",
-    "h8_cache_dir": "/data/DayinChen/NWP/H8_cache_swr_bjt",
-    "train_pv_dir": "/data/DayinChen/NWP/PV/train_directory_cleaned_csv",
-    "val_pv_dir": "/data/DayinChen/NWP/PV/val_directory_cleaned_csv",
-    "nwp_farm_info_xlsx": "/data/DayinChen/NWP/old_NWP/farm_basic_infomation.xlsx",
-    "nwp_station_map_csv": "/data/DayinChen/NWP/old_NWP/basic_info_500_with_station.csv",
+    "run_dir": str(p3.DATA_DIR / "_local_core_defaults"),
+    "out_dir": str(p3.DATA_DIR / "_local_core_defaults" / "fullfield_multisource_cache_issue_h8_seed2026"),
+    "pv_frame_cache_dir": str(p3.DATA_DIR / "_local_core_defaults" / "fullfield_frame_cache_64_seed2026"),
+    "h8_cache_dir": str(p3.ARTIFACT_ROOT / "H8_cache_swr_bjt"),
+    "train_pv_dir": str(p3.TRAIN_PV_DIR),
+    "val_pv_dir": str(p3.VAL_PV_DIR),
+    "nwp_farm_info_xlsx": str(p3.NWP_FARM_INFO_XLSX),
+    "nwp_station_map_csv": str(p3.NWP_STATION_MAP_CSV),
     "time_start": "2022-01-01 07:00:00",
     "time_end": "2023-06-24 16:45:00",
     "train_end": "2023-01-13 23:59:59",

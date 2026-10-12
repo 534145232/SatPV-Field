@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -17,24 +18,28 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 STAGE3_DIR = SCRIPT_DIR.parent
 PIPELINE_DIR = STAGE3_DIR.parent
 STAGE4_DIR = PIPELINE_DIR / "stage_4"
+if str(STAGE3_DIR) not in sys.path:
+    sys.path.insert(0, str(STAGE3_DIR))
+
+import stage3_paths as p3
 
 DENSITY_DATA_ROOT = Path(
     os.environ.get(
         "DENSITY_DATA_ROOT",
-        "/data/Final_3_stage_pipeline/stage_3/data/11_source_fleet_density",
+        p3.DATA_DIR / "11_source_fleet_density",
     )
-)
-DENSITY_STAGE3_RUN_ROOT = STAGE3_DIR / "runs" / "source_fleet_density"
-DENSITY_STAGE4_RUN_ROOT = STAGE4_DIR / "runs" / "source_fleet_density"
+).expanduser().resolve()
+DENSITY_STAGE3_RUN_ROOT = p3.RUNS_DIR / "source_fleet_density"
+DENSITY_STAGE4_RUN_ROOT = p3.ARTIFACT_ROOT / "stage4" / "runs" / "source_fleet_density"
 
 DEFAULT_SEED = 2026
 DEFAULT_RATIOS = (0.25, 0.50, 0.75, 1.00)
 RATIO_TO_COUNT = {0.25: 112, 0.50: 223, 0.75: 335, 1.00: 446}
 
-BEST_FULL_STAGE3_RUN_DIR = STAGE3_DIR / "runs" / "ablation_motion_branch_last_only" / "warp_direct_gate"
+BEST_FULL_STAGE3_RUN_DIR = p3.RUNS_DIR / "ablation_motion_branch_last_only" / "warp_direct_gate"
 BEST_FULL_STAGE3_MODEL_NAME = "swr_anchor_motion_fusion_pv_nwp_motion_warp_direct_gate"
 BEST_FULL_STAGE3_CHECKPOINT = BEST_FULL_STAGE3_RUN_DIR / f"{BEST_FULL_STAGE3_MODEL_NAME}_best.pt"
-BEST_FULL_STAGE4_RUN_DIR = STAGE4_DIR / "runs" / "05l_per_station_temporal_stage3_field_patch_seed2026"
+BEST_FULL_STAGE4_RUN_DIR = p3.ARTIFACT_ROOT / "stage4" / "runs" / "05l_per_station_temporal_stage3_field_patch_seed2026"
 
 
 def ratio_label(ratio: float) -> str:

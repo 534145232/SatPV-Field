@@ -74,9 +74,9 @@ def load_index(index_csv: Path, split: str | None = None) -> pd.DataFrame:
     if not Path(index_csv).exists():
         hint = "Please generate the sample index first."
         if "h8_big_patch_index" in str(index_csv):
-            hint = "Please run: bash /code/Final_3_stage_pipeline/stage_1/run_stage1_build_indices_and_cache.sh"
+            hint = "Please run from the repository root: bash stage_1/run_stage1_build_indices_and_cache.sh"
         elif "4hist_3future" in str(index_csv):
-            hint = "Please run: bash /code/Final_3_stage_pipeline/stage_1/run_stage1_build_indices_and_cache.sh"
+            hint = "Please run from the repository root: bash stage_1/run_stage1_build_indices_and_cache.sh"
         raise FileNotFoundError(f"Index CSV not found: {index_csv}\n{hint}")
     df = pd.read_csv(index_csv)
     df["_index_row"] = np.arange(len(df), dtype=np.int64)

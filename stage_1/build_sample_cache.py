@@ -144,7 +144,7 @@ def main() -> None:
         raise FileNotFoundError(
             f"Index CSV not found: {args.index_csv}\n"
             "Generate the 4-history + 3-future index first, for example:\n"
-            "  bash /code/Final_3_stage_pipeline/stage_1/run_stage1_build_indices_and_cache.sh"
+            "  bash stage_1/run_stage1_build_indices_and_cache.sh"
         )
     df = load_index(args.index_csv)
     n = len(df)

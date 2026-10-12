@@ -7,17 +7,17 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="${1:-${SCRIPT_DIR}}"
 VENV_DIR="${2:-${PROJECT_DIR}/.venv}"
-BASE_PYTHON="${BIGPV_BASE_PYTHON:-python}"
+BASE_PYTHON="${SATPV_BASE_PYTHON:-${BIGPV_BASE_PYTHON:-python}}"
 
 if ! command -v "${BASE_PYTHON}" >/dev/null 2>&1; then
   echo "ERROR: Python command not found: ${BASE_PYTHON}" >&2
-  echo "Set BIGPV_BASE_PYTHON to the interpreter supplied by the PyTorch image." >&2
+  echo "Set SATPV_BASE_PYTHON to the interpreter supplied by the PyTorch image." >&2
   exit 1
 fi
 
 if ! "${BASE_PYTHON}" -c "import torch; assert torch.version.cuda is not None"; then
   echo "ERROR: ${BASE_PYTHON} cannot import the image's CUDA-enabled PyTorch." >&2
-  echo "Run 'which -a python python3' and set BIGPV_BASE_PYTHON to the correct interpreter." >&2
+  echo "Run 'which -a python python3' and set SATPV_BASE_PYTHON to the correct interpreter." >&2
   exit 1
 fi
 

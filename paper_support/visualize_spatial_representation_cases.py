@@ -17,13 +17,13 @@ never plotted or used in case selection.
 
 Default server usage
 --------------------
-python /workspace/Final_3_stage_pipeline/paper_support/visualize_spatial_representation_cases.py
+python paper_support/visualize_spatial_representation_cases.py
 
 The default map geometry uses the same detailed contextily tile workflow as
 the Ramp_FinalFinal geographical figures.  Use an offline Natural Earth
 background with:
 
-python /workspace/Final_3_stage_pipeline/paper_support/visualize_spatial_representation_cases.py \
+python paper_support/visualize_spatial_representation_cases.py \
   --background natural-earth
 
 The script reuses the production-equivalent loading and health-filter helpers

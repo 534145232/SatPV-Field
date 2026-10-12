@@ -10,16 +10,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import stage3_paths as p3
+
 from train_regional_dense_reconstruction import masked_huber, splat_values
 from visualize_regional_split_frames import _bounds, ensure_dir, estimate_kpi, load_station_series, write_json
 
 USE_PYCHARM_DEFAULTS_WHEN_NO_ARGS = True
 
 PYCHARM_DEFAULTS = {
-    "run_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults",
-    "train_pv_dir": "/data/DayinChen/NWP/PV/train_directory_cleaned_csv",
-    "val_pv_dir": "/data/DayinChen/NWP/PV/val_directory_cleaned_csv",
-    "out_dir": "/code/Final_3_stage_pipeline/stage_3/data/_local_core_defaults/fullfield_dense_temporal_seed2026",
+    "run_dir": str(p3.DATA_DIR / "_local_core_defaults"),
+    "train_pv_dir": str(p3.TRAIN_PV_DIR),
+    "val_pv_dir": str(p3.VAL_PV_DIR),
+    "out_dir": str(p3.DATA_DIR / "_local_core_defaults" / "fullfield_dense_temporal_seed2026"),
     "time_start": "2022-01-01 07:00:00",
     "time_end": "2023-06-24 16:45:00",
     "train_end": "2023-01-13 23:59:59",
