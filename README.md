@@ -319,7 +319,21 @@ Natural Earth shapefiles and downloaded map tiles are not bundled. Set the relev
 
 ## Citation and license
 
-The source code is released under the [MIT License](LICENSE). The license covers the repository code only; it does not grant rights to the operational PV data, satellite products, NWP inputs, model weights, map assets, or other third-party material.
+If you use this code, please cite:
 
-The final article citation and `CITATION.cff` will be added after publication.
+```bibtex
+@misc{chen2026constructedregionalphotovoltaicgeneration,
+  title        = {Constructed regional photovoltaic generation fields improve ultra-short-term distributed solar forecasting},
+  author       = {Dayin Chen and Xiaodan Shi and Xin Xu and Zhongyue Su and Shibo Zhu and Dongxiao Zhang and Yuntian Chen and Jinyue Yan},
+  year         = {2026},
+  eprint       = {2610.16110},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  url          = {https://arxiv.org/abs/2610.16110}
+}
+```
+
+Citation metadata is also available in [`CITATION.cff`](CITATION.cff).
+
+The source code is released under the [MIT License](LICENSE). The license covers the repository code only; it does not grant rights to the operational PV data, satellite products, NWP inputs, model weights, map assets, or other third-party material.
 

@@ -24,6 +24,7 @@ TEXT_SUFFIXES = {
     ".toml",
     ".yml",
     ".yaml",
+    ".cff",
     ".json",
     ".gitignore",
     ".gitattributes",
